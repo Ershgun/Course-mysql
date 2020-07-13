@@ -1,11 +1,11 @@
+DROP DATABASE IF EXISTS insta;
 create database insta;
-
 use insta;
-
 DROP TABLE IF EXISTS users;
 
 -- Таблица пользователей
 
+DROP TABLE IF EXISTS users;
 CREATE TABLE users (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT "Идентификатор строки", 
   nickname VARCHAR(25) NOT NULL COMMENT "Никнейм",
@@ -18,7 +18,6 @@ CREATE TABLE users (
  -- Таблица профилей 
  
 DROP TABLE IF EXISTS profiles;
-
 CREATE TABLE profiles (
   user_id INT UNSIGNED NOT NULL PRIMARY KEY COMMENT "Ссылка на пользователя", 
   gender CHAR(1) NOT NULL COMMENT "Пол",
@@ -33,6 +32,7 @@ CREATE TABLE profiles (
 
  -- Таблица типов аккоунтов (Обычный/бизнес)
 
+DROP TABLE IF EXISTS acount_types;
 CREATE TABLE acount_types (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT "Идентификатор строки",
   name VARCHAR(255) NOT NULL UNIQUE COMMENT "Название типа",
@@ -42,6 +42,7 @@ CREATE TABLE acount_types (
 
 -- Таблица контанта
 
+DROP TABLE IF EXISTS content;
 CREATE TABLE content (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT "Идентификатор строки",
   user_id INT UNSIGNED NOT NULL COMMENT "Ссылка на пользователя",
@@ -55,6 +56,7 @@ CREATE TABLE content (
 
 -- Типы контента
 
+DROP TABLE IF EXISTS content_types;
 CREATE TABLE content_types (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT "Идентификатор строки",
   name VARCHAR(255) NOT NULL UNIQUE COMMENT "Тип контента",
@@ -66,6 +68,7 @@ DROP TABLE IF EXISTS publication;
 
 -- Публикации
 
+DROP TABLE IF EXISTS publication;
 CREATE TABLE publication (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   user_id INT UNSIGNED NOT NULL,
@@ -78,6 +81,8 @@ CREATE TABLE publication (
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
+
+DROP TABLE IF EXISTS publication_types;
 CREATE TABLE publication_types (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT "Идентификатор строки",
   name VARCHAR(255) NOT NULL UNIQUE COMMENT "Тип публикации",
@@ -85,6 +90,8 @@ CREATE TABLE publication_types (
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT "Время обновления строки"
 ) COMMENT "Типы публикаций";
 
+
+DROP TABLE IF EXISTS stories;
 CREATE TABLE stories (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   user_id INT UNSIGNED NOT NULL,
@@ -97,6 +104,8 @@ CREATE TABLE stories (
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
+
+DROP TABLE IF EXISTS stories_types;
 CREATE TABLE stories_types (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT "Идентификатор строки",
   name VARCHAR(255) NOT NULL UNIQUE COMMENT "Тип истории",
@@ -104,6 +113,8 @@ CREATE TABLE stories_types (
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT "Время обновления строки"
 ) COMMENT "Типы историй";
 
+
+DROP TABLE IF EXISTS direct;
 CREATE TABLE direct (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT "Идентификатор строки", 
   from_user_id INT UNSIGNED NOT NULL COMMENT "Ссылка на отправителя сообщения",
@@ -114,6 +125,8 @@ CREATE TABLE direct (
   created_at DATETIME DEFAULT NOW() COMMENT "Время создания строки"
 ) COMMENT "Сообщения/Директ";
 
+
+DROP TABLE IF EXISTS folowers;
 CREATE TABLE folowers (
   user_id INT UNSIGNED NOT NULL COMMENT "Ссылка на того кто подписался",
   friend_id INT UNSIGNED NOT NULL COMMENT "Ссылка на того на котого произошла подписка",
